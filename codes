@@ -1,0 +1,44 @@
+The essence of this code is that in this :
+an array of length n is given ,separate this int o two parts of length xl,and yl .now p is an integer such that p>x[i] for all i:
+and p<y[i] for all i;
+    -----------------  input :--------------------
+  first line contains the length of array and lengths of two parts 
+  second line contains n spaced integers of array 
+    -------------------output:-----------------------
+    find the no fo such integers p that exists ,if doesn't exist print 0.
+---------------- program:-------------------------------------------------
+#include<stdio.h>
+int main()
+{
+	int a[20],b[10],c[10],n,t,xl,yl,i=0,j=0;
+	scanf("%d %d %d",&n,&xl,&yl);
+	for(i=0;i<n;i++)
+	scanf("%d",&a[i]);
+	for(i=0;i<n;i++)//sorting the array for making the analogy clear
+	{
+		for(j=0;j<n;j++)
+		{
+			if(a[i]<a[j])
+			{
+				t=a[i];
+				a[i]=a[j];
+				a[j]=t;
+			}
+		}
+	}
+	j=0;
+for(i=0;i<yl;i++) //copying the first yl elements in array b
+b[j++]=a[i];
+j=0;
+for(i=yl;i<n;i++) //copying the next xl elements to array c
+c[j++]=a[i];
+printf("%d",c[0]-b[yl-1]); // the no of integers equals to difference of first element of c array and last element of b array  
+	return 0;	
+}
+
+test case
+5 2 3            
+6 2 1 100 3
+
+output:
+3
